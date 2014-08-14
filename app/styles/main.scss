@@ -104,12 +104,7 @@ $screen-1368: 1368px;
 $large-screen: 1440px;
 
 
-// The defaults
-$slicer-breakpoints: (
-    small  : $small-screen, // Small
-    medium : $medium-screen, // Medium
-    large  : $large-screen, // Large
-);
+
 
 // COLOR HEADER & FOOTER
 $color-header:#252525;
@@ -177,7 +172,7 @@ $color-even-dark: darken($color-even, 30);
 
 
 
-.block {    
+.block {
     color:#fff;
     padding: 0;
     margin:10px 0;
