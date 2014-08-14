@@ -11,9 +11,11 @@ angular.module('lolApp')
 .controller('SummonersCtrl', function ($scope, SummonerService, ChampionService) {
     $scope.summonerService = SummonerService;
     $scope.loading = false;
-    $scope.getSummoner = function(name) {
+    $scope.name = 'jarjarv';
+    $scope.selectedRegion = 'euw';
+    $scope.getSummoner = function(name, selectedRegion) {
         $scope.loading = true;
-        SummonerService.getSummoner(name).then(function(summoner){
+        SummonerService.getSummoner(name, selectedRegion).then(function(summoner){
             $scope.summoner = summoner.data[name];
         });       
         ChampionService.getChampion().then(function(){

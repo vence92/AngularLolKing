@@ -1,5 +1,6 @@
-<form ng-submit="getSummoner(name)">
-    <input type="text" ng-model="name" value="jarjarv"/>
+<form ng-submit="getSummoner(name,selectedRegion)">
+    <input type="text" ng-model="name"/>
+    <select ng-model="selectedRegion" ng-options="k as k for (k,v) in summonerService.regions"></select>
     <button type="submit">Search</button>
 </form>
 <div ng-show="loading">Chargement...</div>
@@ -78,6 +79,20 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="block__header">
+                Most Champions Played
+            </div>
+            <div class="block__content">
+                <div ng-repeat="rankedstats in summoner.rankedStats | orderBy:'-stats.totalSessionsPlayed' | limitTo:5">
+                    {{rankedstats.name}}
+                    {{rankedstats.stats.totalSessionsPlayed}} Games played
+                    {{rankedstats.stats.totalSessionsWon}} Games won
+                    {{rankedstats.stats.totalSessionsLost}} Games lost
                 </div>
             </div>
         </div>

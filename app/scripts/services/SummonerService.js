@@ -4,35 +4,59 @@
 angular.module('lolApp')
     .service('SummonerService', function ($http, $q) {
 
-        var key = '?api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183';
-        var ApiUrl = 'https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/';
+        var regions = {
+            'br': 'br.api.pvp.net',
+            'eune' : 'eune.api.pvp.net',
+            'euw' : 'euw.api.pvp.net',
+            'kr' : 'kr.api.pvp.net',
+            'las' : 'las.api.pvp.net',
+            'lan' : 'lan.api.pvp.net',
+            'na' : 'na.api.pvp.net',
+            'oce' : 'oce.api.pvp.net',
+            'tr' : 'tr.api.pvp.net',
+            'ru' : 'ru.api.pvp.net',
+            'global' : 'global.api.pvp.net'
+        };
 
-        function getSummoner(name) {
-            return $http.get(ApiUrl + name + key).success(function(data){
+
+        function getSummoner(name, selectedRegion) {
+
+            var ApiKey = 'api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183';
+            var ApiUrl = 'https://'+ api.regions[selectedRegion] + '/api/lol/'+ selectedRegion;
+            console.log(selectedRegion); 
+
+            return $http.get(ApiUrl + '/v1.4/summoner/by-name/' + name + '?' + ApiKey).success(function(data){
                 
                 api.summoner = data[name];
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/'+ api.summoner.id + '/masteries' + key).success(function(data){
+                $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey).success(function(data){
                     api.summoner.masteries = data[api.summoner.id].pages;
                 });
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/'+ api.summoner.id + '/runes' + key).success(function(data){
+                $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/runes?' + ApiKey).success(function(data){
                     api.summoner.runes = data[api.summoner.id].pages;
                 });
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked' + key).success(function(data){
+                $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey).success(function(data){
                     api.summoner.rankedStats = data.champions;
+                    angular.forEach(api.summoner.rankedStats, function(value, key){
+                        console.log(value.id);
+                        if(value.id === 0) {
+                            api.summoner.rankedStats.summary = api.summoner.rankedStats[key];
+                            delete(api.summoner.rankedStats[key]);
+                        }
+                    })
                 });
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v1.3/game/by-summoner/'+ api.summoner.id +'/recent' + key).success(function(data){
+                $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey).success(function(data){
                     api.summoner.recentGames = data.games;
                 });
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v1.3/stats/by-summoner/'+ api.summoner.id +'/summary?season=SEASON4&api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183').success(function(data){
+                $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/summary?season=SEASON4&'+ ApiKey).success(function(data){
                     api.summoner.summary = data.playerStatSummaries;
                 })
 
-                $http.get('https://euw.api.pvp.net/api/lol/euw/v2.4/league/by-summoner/'+ api.summoner.id+'/entry' + key).success(function(data){
+                $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id+'/entry?' + ApiKey).success(function(data){
                     api.summoner.league = data[api.summoner.id];
                 })
             });
@@ -58,7 +82,8 @@ angular.module('lolApp')
         var api = {
             summoner: null,
             getSummoner: getSummoner,
-            getStatsByGame: getStatsByGame
+            getStatsByGame: getStatsByGame,
+            regions : regions
         };
 
     return api;
