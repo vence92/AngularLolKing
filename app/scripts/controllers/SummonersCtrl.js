@@ -8,7 +8,7 @@
  * Controller of the lolAppApp
  */
 angular.module('lolApp')
-.controller('SummonersCtrl', function ($scope, SummonerService, ChampionService) {
+.controller('SummonersCtrl', function ($scope, $state, $location,  SummonerService, ChampionService) {
     $scope.summonerService = SummonerService;
     $scope.loading = false;
     $scope.name = 'jarjarv';
@@ -17,6 +17,7 @@ angular.module('lolApp')
         $scope.loading = true;
         SummonerService.getSummoner(name, selectedRegion).then(function(summoner){
             $scope.summoner = summoner.data[name];
+            $state.go('summoners.details', { region : $scope.selectedRegion, id : $scope.summoner.id});
         });       
         ChampionService.getChampion().then(function(){
             angular.forEach($scope.summoner.rankedStats, function(rankedstats){

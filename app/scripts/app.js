@@ -33,6 +33,11 @@ angular
             templateUrl: "views/summoners.html",
             controller: "SummonersCtrl"
         })
+        .state('summoners.details', {
+            url: "/:region/:id",
+            templateUrl: "views/summoners.html",
+            controller: "SummonersCtrl"
+        })
   })
   .run(function(ChampionService){
     ChampionService.getChampion();

@@ -40,7 +40,6 @@ angular.module('lolApp')
                 $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey).success(function(data){
                     api.summoner.rankedStats = data.champions;
                     angular.forEach(api.summoner.rankedStats, function(value, key){
-                        console.log(value.id);
                         if(value.id === 0) {
                             api.summoner.rankedStats.summary = api.summoner.rankedStats[key];
                             delete(api.summoner.rankedStats[key]);
