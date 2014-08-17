@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-md-1">
+		Champion
+	</div>
+	<div class="col-md-1">
+		Wins
+	</div>
+	<div class="col-md-1">
+		Losses
+	</div>
+	<div class="col-md-1">
+		Wins %
+	</div>
+	<div class="col-md-1">
+		Kills
+	</div>
+	<div class="col-md-1">
+		Deaths
+	</div>
+	<div class="col-md-1">
+		Assists
+	</div>
+	<div class="col-md-1">
+		Creepsezezez
+	</div>
+</div>
+<div class="row" ng-repeat="rankedstats in summoner.rankedStats" ng-if="rankedstats.name">
+	<div class="col-md-1">
+		{{rankedstats.name}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.stats.totalSessionsWon}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.stats.totalSessionsLost}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.winRate}} %
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.statsByGame.totalChampionKills}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.statsByGame.totalDeathsPerSession}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.statsByGame.totalAssists}}
+	</div>
+	<div class="col-md-1">
+		{{rankedstats.statsByGame.totalMinionKills}}
+	</div>
+</ul>

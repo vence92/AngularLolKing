@@ -20,21 +20,20 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div>
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ui-sref="champions">Champions</a></li>
-          <li><a ui-sref="summoners">Summoners</a></li>
-        </ul>
-        <h3 class="text-muted">lolApp</h3>
-      </div>
-
-      <div ui-view="" class="container-fluid"></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+    <div class="header" ng-controller="HomeCtrl">
+    <form ng-submit="getSummoner(name,selectedRegion)">
+      <input type="text" ng-model="name"/>
+      <select ng-model="selectedRegion" ng-options="k as k for (k,v) in summonerService.regions"></select>
+      <button type="submit">Search</button>
+    </form>
+      <ul class="nav nav-pills pull-right">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="champions">Champions</a></li>
+      </ul>
+    </div>
+    <div ui-view></div>
+    <div class="footer">
+      <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
     </div>
 
 
@@ -88,6 +87,7 @@
         <script src="scripts/services/ChampionService.js"></script>
         <script src="scripts/controllers/ChampionsCtrl.js"></script>
         <script src="scripts/controllers/SummonersCtrl.js"></script>
+        <script src="scripts/controllers/HomeCtrl.js"></script>
         <script src="scripts/filters/MainFilters.js"></script>
         <!-- endbuild -->
 </body>

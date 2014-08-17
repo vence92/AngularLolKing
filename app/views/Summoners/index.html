@@ -1,0 +1,19 @@
+<div ng-show="loading">Chargement...</div>
+<dig ng-hide="loading">
+    <div>
+        <h3>
+            {{summoner.name}}
+        </h3>
+    </div>
+    <div ng-show="summoner.name">
+        <ul>
+            <li><a ui-sref="summoners.profile">Profile</a></li>
+            <li><a ui-sref="summoners.leagues">Leagues</a></li>
+            <li><a ui-sref="summoners.rankedstats">Ranked Stats</a></li>
+            <li><a ui-sref="summoners.matches">Matches</a></li>
+            <li><a ui-sref="summoners.masteries">Masteries</a></li>
+            <li><a ui-sref="summoners.runes">Runes</a></li>
+        </ul>
+        <div ui-view></div>
+    </div>
+</div>

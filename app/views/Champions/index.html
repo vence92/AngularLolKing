@@ -1,0 +1,9 @@
+<div class="champion">
+    <div ng-repeat="champion in champions" class="champion__block row">
+        <div class="champion__image col-md-2" style="background: url('../images/sprite/{{champion.image.sprite}}') -{{champion.image.x}}px -{{champion.image.y}}px no-repeat;">
+        </div>
+        <div class="col-md-2">
+            {{champion.name}}
+        </div>
+    </div>
+</div>

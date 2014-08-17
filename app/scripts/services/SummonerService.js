@@ -77,11 +77,23 @@ angular.module('lolApp')
             return statsByGame;
         }
 
+        function getWinRate(stats) {
+            var winRate;
+            angular.forEach(api.summoner.rankedStats, function(value, key) {
+               /* console.log(value, key);*/
+                winRate = stats.totalSessionsWon /stats.totalSessionsPlayed * 100;
+                winRate = Math.round(winRate *10)/10;    
+            })
+
+            return winRate;
+        }
+
 
         var api = {
             summoner: null,
             getSummoner: getSummoner,
             getStatsByGame: getStatsByGame,
+            getWinRate: getWinRate,
             regions : regions
         };
 
