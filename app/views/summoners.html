@@ -1,0 +1,161 @@
+<div ng-show="loading">Chargement...</div>
+<div ng-hide="loading">
+    <div>
+        <h3>
+            {{summoner.name}}
+        </h3>
+    </div>
+    <div ng-show="summoner.name">
+        <div class="block">
+            <div class="block__header">
+                Recent Statistics
+            </div>
+            <div class="block__content">
+                <div class="row">
+                    <div class="col-md-2 text-center" ng-repeat="stat in summoner.recentGames | limitTo: 6" style="background:url('//lkimg.zamimg.com/shared/riot/images/champions/{{stat.championId}}.png') no-repeat center center; height: 100px;width: auto;margin:0 5px;">
+                        <div>
+                            {{stat.stats.championsKilled}} kills
+                        </div>
+                        <div>
+                            {{stat.stats.numDeaths}} deaths
+                        </div>
+                        <div>   
+                            {{stat.stats.assists}} assists
+                        </div>
+                        <div ng-if="stat.stats.win" class="text-confirm">
+                            WIN
+                        </div>
+                        <div ng-if="!stat.stats.win" class="text-error">
+                            LOSE
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block row">
+            <div class="col-md-8">
+                <div class="block__header">
+                    Personal Ratings
+                </div>
+                <div class="block__content">
+                    <div class="row">
+                        <div ng-repeat="league in summoner.league" class="col-md-4 text-center">
+                            <div>{{league.queue | formatGameType}}</div>
+                            <div style="height: 154px;
+                                    background:url('//lkimg.zamimg.com/images/medals/{{league.tier | lowercase}}_{{league.entries[0].division | formatDivision}}.png') no-repeat;
+                                    background-position: center">
+                            </div>
+                            <div>{{league.tier}} {{league.entries[0].division}}</div>
+                            <div>{{league.entries[0].leaguePoints}} League Points</div>
+                            <div>{{league.entries[0].wins}} wins</div>
+                        </div>
+                    </div>
+                </div>  
+            </div> 
+            <div class="col-md-4 summary">
+                <div class="block__header">
+                    Statistics
+                </div>
+                <div class="block__content">
+                    <div class="block--summary" ng-repeat="summary in summoner.summary" ng-if="summary.playerStatSummaryType == 'RankedSolo5x5' || summary.playerStatSummaryType == 'Unranked' || summary.playerStatSummaryType == 'Unranked3x3'">
+                        <div class="block__header--summary">
+                            {{summary.playerStatSummaryType | formatGameType}}
+                        </div>
+                        <div class="block__content--summary">
+                            <div>
+                                Wins : {{summary.wins}}
+                            </div>
+                            <div>
+                                Kills : {{summary.aggregatedStats.totalChampionKills}}
+                            </div>
+                            <div>
+                                Assists : {{summary.aggregatedStats.totalAssists}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="block__header">
+                Most Champions Played
+            </div>
+            <div class="block__content">
+                <div ng-repeat="rankedstats in summoner.rankedStats | orderBy:'-stats.totalSessionsPlayed' | limitTo:5">
+                    {{rankedstats.name}}
+                    {{rankedstats.stats.totalSessionsPlayed}} Games played
+                    {{rankedstats.stats.totalSessionsWon}} Games won
+                    {{rankedstats.stats.totalSessionsLost}} Games lost
+                </div>
+            </div>
+        </div>
+
+   <!--       <div class="col-md-3 block">
+            <div class="block__header">
+                Maitrises
+            </div>
+           <div ng-repeat="mastery in summoner.masteries" class="block__content">
+                {{mastery.name}}
+           </div>
+        </div>
+
+        <div class="col-md-3 block">
+            <div class="block__header">
+                Runes
+            </div>
+           <div ng-repeat="rune in summoner.runes" class="block__content">
+                {{rune.name}}
+           </div>
+        </div>
+    </div> -->
+    <div class="row" ng-show="summoner.rankedStats">
+        <div class="col-md-1">
+            Nom
+        </div>
+        <div class="col-md-1">
+            Wins
+        </div>
+        <div class="col-md-1">
+            Losses
+        </div>
+        <div class="col-md-1">
+            Kills/game
+        </div>
+        <div class="col-md-1">
+            Deaths/game
+        </div>
+        <div class="col-md-1">
+            Assists/game
+        </div>
+        <div class="col-md-1">
+            Minions/game
+        </div>
+    </div>
+    <div ng-repeat="rankedstats in summoner.rankedStats" class="row" ng-show="rankedstats.id != 0">
+        <div class="col-md-1">
+            {{ rankedstats.name }}
+        </div>
+        <div class="col-md-1">
+            {{ rankedstats.stats.totalSessionsWon}}
+        </div> 
+        <div class="col-md-1">
+            {{ rankedstats.stats.totalSessionsLost}}
+        </div>
+        <div class="col-md-1">
+            {{ rankedstats.statsByGame.totalChampionKills}}
+        </div> 
+        <div class="col-md-1">
+            {{ rankedstats.statsByGame.totalDeathsPerSession}}
+        </div> 
+        <div class="col-md-1">
+            {{ rankedstats.statsByGame.totalAssists}}
+        </div> 
+        <div class="col-md-1">
+            {{ rankedstats.statsByGame.totalMinionKills}}
+        </div> 
+    </div> 
+</div>
+
+

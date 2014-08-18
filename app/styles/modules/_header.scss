@@ -1,0 +1,48 @@
+header {
+    form {
+        @include rem(margin-top,8px);
+            > input {
+                @include rem(width,250px);
+                + select {
+                    @include rem(margin-left,-10px);
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    text-align: center;
+                    background: $color-block;
+                    border-radius:0 2px 2px 0;
+                    border:none;
+                    &:focus {
+                        box-shadow: none;
+                        outline:none;
+                    }
+                }
+            }
+        button {
+            background: $color-header;
+            color:$color-light;
+        }
+    }
+    ul {
+        > li {
+            height:50px;
+            @include rem(padding,15px);
+            background: darken($color-header,10);
+            border-color: $color-header;
+            border-width: 1px;
+            border-left:solid;
+            border-right:solid;
+            > a {
+
+            }
+        }
+    }
+    a {
+        @include font-size(1.6);
+        @include rem(padding-top,8px);
+        color:$color-light;
+        > i {
+            @include font-size(3);
+            color:$color-light;
+        }
+    }
+}

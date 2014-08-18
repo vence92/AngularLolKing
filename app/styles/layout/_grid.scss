@@ -1,0 +1,91 @@
+// GRID FIVE
+.l-row,
+.l-row-collapsed {
+    width: 100%;
+
+    @extend .clearfix;
+
+    #{$grid-column-list} {
+        float: left;
+        display: block;
+    }
+}
+
+.l-row {
+    #{$grid-column-list} {
+        width: 100%;
+        margin-left: 2.127659574468085%;
+        @include rem(min-height, 20px);
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &.hide {
+            display: none;
+        }
+        &.f-right {
+            float: right;
+        }
+    }
+}
+
+// Unknown use but here for compatibility propose..
+#{$grid-column-list} {
+    &.hide {
+        display: none;
+    }
+    &.f-right {
+        float: right;
+    }
+}
+
+.l-row .l-col1 {
+    width: 6.382978723404255%;
+}
+.l-row .l-col2 {
+    width: 14.893617021276595%;
+}
+.l-row .l-col3 {
+    width: 23.404255319148934%;
+}
+.l-row .l-col4 {
+    width: 31.914893617021278%;
+}
+.l-row .l-col5 {
+    width: 40.42553191489362%;
+}
+.l-row .l-col6 {
+    width: 48.93617021276595%;
+}
+.l-row .l-col7 {
+    width: 57.44680851063829%;
+}
+.l-row .l-col8 {
+    width: 65.95744680851064%;
+}
+.l-row .l-col9 {
+    width: 74.46808510638297%;
+}
+.l-row .l-col10 {
+    width: 82.97872340425532%;
+}
+.l-row .l-col11 {
+    width: 91.48936170212765%;
+}
+.l-row .l-col12 {
+    width: 100%;
+}
+
+.l-row-collapsed{
+    // HACK to overwrite l-row leaks
+    #{$grid-column-list} {
+        margin-left: 0;
+    }
+
+    @for $i from 1 to 12{
+        > .l-col#{$i} {
+            width: percentage($i / 12);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+/*
+    Transitions durations
+*/
+$sizes: 'short', 'medium', 'high';
+@each $size in $sizes {
+   $i: index($sizes, $size);
+   %transition-#{$size} {
+      transition-duration : unquote('.'+$i + 's');
+   }
+}
+
+/*
+    Transitions properties
+
+    Deux transitions  = @include animations($animations: 'background-color, border-color');
+    Une transition = @extend %transition-property;
+*/
+$properties: 'background-color', 'color', 'opacity', 'border-color', 'box-shadow', 'transform', 'all', 'max-height';
+@each $property in $properties {
+   %transition-#{$property} {
+      transition-property : unquote($property);
+   }
+}
+
+@mixin animations($animations) {
+    transition-property: unquote($animations);
+}
+
+

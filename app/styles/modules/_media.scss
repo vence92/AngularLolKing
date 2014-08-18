@@ -1,0 +1,10 @@
+.screen--large {
+    margin: 0 auto;
+    @media (min-width:$large-screen + 1) {
+        width: $large-screen;
+    }
+    @media (max-width:$large-screen) {
+        @include rem(padding-left,10px);
+        @include rem(padding-right,10px);
+    }
+}

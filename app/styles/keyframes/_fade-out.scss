@@ -1,0 +1,9 @@
+@include keyframes(FADE-OUT) {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

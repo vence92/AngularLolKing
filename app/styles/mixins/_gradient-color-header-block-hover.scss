@@ -1,0 +1,6 @@
+@mixin gradient-color-header-block-hover() {
+    // FALLBACK
+    background-color:$color-header-block-start-hover;
+    // GRADIENT
+	background: linear-gradient(top,$color-header-block-start-hover,$color-header-block-end-hover);
+}

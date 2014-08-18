@@ -1,0 +1,83 @@
+// CONTAINER
+.container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    &:focus {
+        outline: 0;
+    }
+    &--wrapped {
+        @include rem(top,50px);
+        @include rem(margin-bottom,36px);
+        @media (max-height:$small-screen) {
+            @include rem(top,45px);
+        }
+    }
+    &--embed {
+        // NO CHANGE ON THIS OVERFLOW ! USE .HAS-VIEW IF NEED SCROLL
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        background: $color-light;
+        @include rem(padding,10px);
+        @include rem(top,56px);
+        @media (max-height:$small-screen) {
+            @include rem(top,33px);
+        }
+        &-editable {
+            @include rem(top,-10px);
+        }
+    }
+    &--large {
+        background: $color-light;
+        @include rem(top,50px);
+        @media (max-height:$small-screen) {
+            @include rem(top,38px);
+        }
+    }
+    &--null {
+        top: 0;
+    }
+    &--modal {
+        padding: 0;
+        @include rem(top,6px);
+        &.is-multiple {
+            @include rem(margin-bottom,50px);
+        }
+    }
+    &--scrollable {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    &--fixed {
+        position: fixed;
+    }
+    &--menu {
+        bottom: auto;
+    }
+    &--browse {
+        top: auto;
+    }
+    &--report {
+        @include rem(top,60px);
+        @media (max-height: $small-screen) {
+            @include rem(top,33px);
+        }
+        @media (max-width: $small-screen) {
+            @include rem(top,62px);
+        }
+    }
+    &--agenda {
+        @include rem(top,73px);
+        &-event {
+            @include rem(top,63px);
+        }
+    }
+    &--offer,
+    &--demand {
+        padding: 0;
+    }
+}

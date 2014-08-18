@@ -1,0 +1,39 @@
+//
+// List styling helpers from bootstrap 3
+// see https://github.com/twbs/bootstrap-sass/blob/5e583f0219dc6195e3fc5910e053716c06b523ea/vendor/assets/stylesheets/bootstrap/_type.scss#L155
+// --------------------------------------------------
+
+
+// List options
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+    @extend .list-unstyled;
+    @include rem(margin-left, -5px);
+
+    > li {
+        display: inline-block;
+        @include rem(padding-left, 5px);
+        @include rem(padding-right, 5px);
+    }
+}
+
+
+// Use dashes instead of dots on the children li
+.list-style-type-dash {
+    @extend .list-unstyled;
+    margin: 0;
+
+    > li:before {
+        content: "-";
+        padding-right: .25em;
+    }
+}
+
+

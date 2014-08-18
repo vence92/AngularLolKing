@@ -1,74 +1,73 @@
-<div class="block">
-            <div class="block__header">
-                Recent Statistics
-            </div>
-            <div class="block__content">
-                <div class="row">
-                    <div class="col-md-2 text-center" ng-repeat="stat in summoner.recentGames | limitTo: 6" style="background:url('//lkimg.zamimg.com/shared/riot/images/champions/{{stat.championId}}.png') no-repeat center center; height: 100px;width: auto;margin:0 5px;">
-                        <div>
-                            {{stat.stats.championsKilled}} kills
-                        </div>
-                        <div>
-                            {{stat.stats.numDeaths}} deaths
-                        </div>
-                        <div>   
-                            {{stat.stats.assists}} assists
-                        </div>
-                        <div ng-if="stat.stats.win">
-                            WIN
-                        </div>
-                        <div ng-if="!stat.stats.win">
-                            LOSE
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="l-padding-10 bg-block-dark">
+    <div class="profile__block">
+        <div class="profile__block__header">
+            Recent Statistics
         </div>
+        <div class="profile__block__content">
+            <ul class="profile__recent__picture text-center">
+                <li ng-repeat="stat in summoner.recentGames | limitTo: 6" style="background:url('//lkimg.zamimg.com/shared/riot/images/champions/{{stat.championId}}.png') no-repeat center center;">
+                    <div>
+                        {{stat.stats.championsKilled}} kills
+                    </div>
+                    <div>
+                        {{stat.stats.numDeaths}} deaths
+                    </div>
+                    <div>
+                        {{stat.stats.assists}} assists
+                    </div>
+                    <div ng-if="stat.stats.win" class="text-confirm">
+                        WIN
+                    </div>
+                    <div ng-if="!stat.stats.win" class="text-error">
+                        LOSE
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-        <div class="block row">
-            <div class="col-md-8">
-                <div class="block__header">
-                    Personal Ratings
-                </div>
-                <div class="block__content">
-                    <div class="row">
-                        <div ng-repeat="league in summoner.league" class="col-md-4 text-center">
-                            <div>{{league.queue | formatGameType}}</div>
-                            <div style="height: 154px;
-                                    background:url('//lkimg.zamimg.com/images/medals/{{league.tier | lowercase}}_{{league.entries[0].division | formatDivision}}.png') no-repeat;
-                                    background-position: center">
-                            </div>
-                            <div>{{league.tier}} {{league.entries[0].division}}</div>
-                            <div>{{league.entries[0].leaguePoints}} League Points</div>
-                            <div>{{league.entries[0].wins}} wins</div>
-                        </div>
+    <div class="profile__block l-row l-margin-top-10">
+        <div class="l-col8">
+            <div class="profile__block__header">
+                Personal Ratings
+            </div>
+            <div class="profile__block__content l-row">
+                <div ng-repeat="league in summoner.league" class="l-col4 text-center">
+                    <div class="big bold">{{league.queue | formatGameType}}</div>
+                    <div style="height: 154px;
+                            background:url('//lkimg.zamimg.com/images/medals/{{league.tier | lowercase}}_{{league.entries[0].division | formatDivision}}.png') no-repeat;
+                            background-position: center">
                     </div>
-                </div>  
-            </div> 
-            <div class="col-md-4 summary">
-                <div class="block__header">
-                    Statistics
+                    <div class="big bold l-margin-bottom-10" >{{league.tier}} {{league.entries[0].division}}</div>
+                    <div class="l-margin-bottom-10">{{league.entries[0].leaguePoints}} League Points</div>
+                    <div>{{league.entries[0].wins}} wins</div>
                 </div>
-                <div class="block__content">
-                    <div class="block--summary" ng-repeat="summary in summoner.summary" ng-if="summary.playerStatSummaryType == 'RankedSolo5x5' || summary.playerStatSummaryType == 'Unranked' || summary.playerStatSummaryType == 'Unranked3x3'">
-                        <div class="block__header--summary">
-                            {{summary.playerStatSummaryType | formatGameType}}
+            </div>  
+        </div> 
+        <div class="l-col4">
+            <div class="profile__block__header">
+                Statistics
+            </div>
+            <div class="profile__block__content profile__block__content--stats">
+                <div ng-repeat="summary in summoner.summary" ng-if="summary.playerStatSummaryType == 'RankedSolo5x5' || summary.playerStatSummaryType == 'Unranked' || summary.playerStatSummaryType == 'Unranked3x3'">
+                    <div class="profile__block__header--stats">
+                        {{summary.playerStatSummaryType | formatGameType}}
+                    </div>
+                    <div class="profile__block__content--summary">
+                        <div>
+                            Wins : {{summary.wins}}
                         </div>
-                        <div class="block__content--summary">
-                            <div>
-                                Wins : {{summary.wins}}
-                            </div>
-                            <div>
-                                Kills : {{summary.aggregatedStats.totalChampionKills}}
-                            </div>
-                            <div>
-                                Assists : {{summary.aggregatedStats.totalAssists}}
-                            </div>
+                        <div>
+                            Kills : {{summary.aggregatedStats.totalChampionKills}}
+                        </div>
+                        <div>
+                            Assists : {{summary.aggregatedStats.totalAssists}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <div>
             <div class="block__header">
@@ -84,3 +83,4 @@
             </div>
         </div>
     </div> 
+</div>

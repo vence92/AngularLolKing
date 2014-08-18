@@ -1,0 +1,6 @@
+@mixin windows-home() {
+    @include animations($animations: 'background-color, color');
+    transition-duration: .21s,.3s;
+    @include transition-delay(0,.2s);
+    @include transition-timing-function(ease-in,ease-out)
+}

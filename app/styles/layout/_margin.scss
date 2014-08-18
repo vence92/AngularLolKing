@@ -1,0 +1,16 @@
+// CREATE MARGIN
+$value-margins:1,2,5,10,15,20,30,40,50,60;
+$type-margins:margin,margin-top,margin-right,margin-bottom,margin-left;
+
+@each $value in $value-margins {
+	$value-name:nth($value,1);
+	// Conversion to pixels using multiplication
+	// Link : https://gist.github.com/awestmoreland/5554996
+	$value-margin:$value-name*1px;
+	@each $type in $type-margins {
+		$type-margin:nth($type,1);
+		.l-#{$type}-#{$value-name} {
+			@include rem(#{$type-margin},$value-margin);
+		}
+	}
+}

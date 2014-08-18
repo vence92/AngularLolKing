@@ -1,0 +1,76 @@
+// CREATE COLOR-TEXT FROM _VARS
+.text-header {
+    color:$color-header;
+}
+.text-footer {
+    color:$color-footer;
+}
+.text-action {
+    color:$color-action;
+}
+.text-action-dark {
+    color:darken($color-action,15);
+}
+.text-block {
+    color:$color-block;
+}
+.text-block-dark {
+    color:$color-even-dark;
+}
+.text-offer {
+    color:$color-offer;
+}
+.text-demand {
+    color:$color-demand;
+}
+.text-customer {
+    color:$color-customer;
+}
+.text-shortcut {
+    color:$color-short-cut;
+}
+.text-new {
+    color:$color-new;
+}
+.text-new {
+    color:$color-new;
+}
+.text-mail {
+    color:$color-mail;
+}
+.text-message {
+    color:$color-message;
+}
+.text-rapprochement {
+    color:$color-rapprochement;
+}
+.text-sms {
+    color:$color-sms;
+}
+.text-actions {
+    color:$color-action;
+}
+.text-visit {
+    color:$color-visit;
+}
+.text-edition {
+    color:$color-edition;
+}
+.text-light {
+    color:$color-light;
+}
+.text-dark {
+    color: $color-block-dark;
+}
+.text-active {
+    color: $color-block-active;
+}
+.text-confirm {
+    color:$color-confirm;
+}
+.text-error {
+    color:$color-warning;
+}
+.text-gold {
+    color: $color-gold;
+}

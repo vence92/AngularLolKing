@@ -20,20 +20,37 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="HomeCtrl">
-    <form ng-submit="getSummoner(name,selectedRegion)">
-      <input type="text" ng-model="name"/>
-      <select ng-model="selectedRegion" ng-options="k as k for (k,v) in summonerService.regions"></select>
-      <button type="submit">Search</button>
-    </form>
-      <ul class="nav nav-pills pull-right">
-        <li><a ui-sref="home">Home</a></li>
-        <li><a ui-sref="champions">Champions</a></li>
-      </ul>
+    <div class="container container--fixed container--menu bg-block-dark">
+        <header class="screen--large" ng-controller="HomeCtrl">
+            <nav class="nav l-row font-light big">
+                <a ui-sref="home" class="l-col3 f-left">
+                    <i class="icon-home">
+                    </i>
+                </a>
+                <form class="l-col6" ng-submit="getSummoner(name,selectedRegion)">
+                    <input type="text" ng-model="name" placeholder="Summoner name ..."/>
+                    <select ng-model="selectedRegion" ng-options="k as k for (k,v) in summonerService.regions"></select>
+                    <button class="button" type="submit">Search</button>
+                </form>
+                <ul class="l-col3 f-right">
+                    <li>
+                        <a ui-sref="champions">
+                            Champions
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     </div>
-    <div ui-view></div>
-    <div class="footer">
-      <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+    <div class="container container--large">
+        <div class="screen--large clearfix">
+            <div ui-view></div>
+        </div>
+    </div>
+    <div class="container container--fixed container--browse z10 bg-block-dark">
+        <footer class="screen--large">
+            Angular LolKing project
+        </footer>
     </div>
 
 

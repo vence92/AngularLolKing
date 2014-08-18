@@ -20,7 +20,7 @@ angular.module('lolApp')
             });
             angular.forEach($scope.summoner.recentGames, function(recentgames){
                 recentgames.name = ChampionService.getChampionName(recentgames.championId);
-            })
+            });
             $scope.loading = false;
         });
 });

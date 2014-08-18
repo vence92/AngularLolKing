@@ -1,0 +1,18 @@
+// responsive css
+@media (max-width:$smart-screen) {
+    .hidden-mobile {
+        display: none !important;
+    }
+}
+
+@media (max-width:$large-screen) and (orientation:portrait) {
+    .hidden-portrait {
+        display: none !important;
+    }
+}
+
+@media (max-width:$large-screen) and (orientation:landscape) {
+    .hidden-landscape {
+        display: none !important;
+    }
+}

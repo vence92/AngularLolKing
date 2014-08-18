@@ -13,7 +13,7 @@ angular.module('lolApp')
             'RANKED_TEAM_5x5' : 'Team 5v5'
         };
         return gameType[value];
-    }
+    };
 })
 
 .filter('formatDivision', function(){
@@ -26,5 +26,5 @@ angular.module('lolApp')
             'V' : 5
         };
         return divisionTab[division];
-    }
+    };
 });

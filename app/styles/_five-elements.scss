@@ -1,0 +1,37 @@
+// HTML
+html {
+    font-family:"proxima-nova-n4", "proxima-nova", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    overflow: hidden;
+    //-webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+    color: $color-block-dark;
+}
+// BODY
+body {
+    background-color:$color-light;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+// HEADER
+header {
+    @include rem(height,50px);
+    @media (max-height:$small-screen) {
+        @include rem(height,31px);
+    }
+}
+
+// FOOTER
+footer {
+    @include rem(height, 100px);
+}
+// debug angular
+.ng-animate-start,
+.ng-animate-active {
+    border-collapse: collapse;
+    border-spacing: none;
+    -ms-zoom: auto;
+}

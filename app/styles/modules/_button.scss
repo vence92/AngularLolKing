@@ -1,0 +1,248 @@
+// BUTTON VALID
+.button {
+    user-select: none!important;
+    display: inline-block;
+    cursor: pointer;
+    height: auto;
+    line-height: normal;
+    text-transform: uppercase;
+    text-align: center;
+    color: $color-light;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
+    @include rem(padding, 10px 15px);
+    @include font-size(1.2);
+    @include animations($animations: 'background-color, color, opacity');
+    @extend %transition-medium;
+    transition-timing-function: ease-in;
+    &:active, &:is-active{
+        box-shadow: inset 0 -1px 3px 0 rgba($color-light,.3);
+    }
+    &:hover {
+        color: $color-light;
+        background-color: rgba(0,0,0,.7);
+    }
+}
+.button + .button {
+    @include rem(margin-left,5px);
+}
+.button:disabled, .button.is-disabled, .button[disabled="disabled"] {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+.button--no {
+    border-radius: 0;
+    box-shadow: none;
+}
+.button--empty {
+    @extend .button--no;
+    cursor: inherit;
+    &:hover {
+        background: inherit;
+        color: inherit;
+    }
+}
+.button--neutral {
+    background-color: darken($color-block,30);
+    &:hover {
+        background-color: darken($color-block,35);
+    }
+}
+.button--dark {
+    background-color: $color-block-dark;
+    &:hover {
+        background-color: lighten($color-block-dark,5);
+    }
+}
+.button--light {
+    color: $color-dark;
+    background-color: $color-light;
+    &:hover {
+        color: inherit;
+        background-color:darken($color-light,10);
+    }
+}
+.button--action {
+    background-color: $color-action;
+    &:hover {
+        background-color: darken($color-action, 5);
+    }
+    &.is-selected {
+        background-color: darken($color-block, 30);
+        &:hover {
+            i {
+                &:before {
+                    content: '\e61c';
+                }
+            }
+        }
+    }
+}
+.button--input {
+    position: absolute;
+    z-index: 1;
+    height: 75%;
+    @include rem(padding,3px);
+    @include rem(top,5px);
+    @include rem(right,4px);
+    > i {
+        display: inline-block;
+        @include font-size(2);
+    }
+}
+.button--highlight {
+    background-color: $color-highlight;
+    &:hover {
+        background-color: darken($color-highlight, 5);
+    }
+}
+.button--icon {
+    position: relative;
+    overflow: hidden;
+    @include rem(padding-left, 40px);
+    i {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: rgba($color-light, 0.1);
+        color: rgba($color-dark,.5);
+        box-shadow: inset -2px 0 10px 0 rgba(0,0,0,0.1);
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        @include font-size(2);
+        @include rem(padding,7px 5px);
+        @include animations($animations: 'color');
+        @extend %transition-short;
+    }
+    &.button--small {
+        @include rem(padding-left,30px);
+        i {
+            @include font-size(1.4);
+            @include rem(padding,5px);
+        }
+    }
+    &.button--big {
+        i {
+            @include rem(padding-top,8px);
+        }
+    }
+    &:hover {
+        i {
+            color: rgba($color-light,.5);
+        }
+    }
+}
+.button--offer {
+    background-color: $color-offer;
+    &:hover {
+        background-color:darken($color-offer,10);
+    }
+}
+.button--demand {
+    background-color: $color-demand;
+    &:hover {
+        background-color:darken($color-demand,10);
+    }
+}
+.button--customer {
+    background-color: $color-customer;
+    &:hover {
+        background-color:darken($color-customer,10);
+    }
+}
+.button--vroom {
+    background-color: $color-vroom;
+    &:hover {
+        background-color:darken($color-vroom,10);
+    }
+}
+.button--square {
+    @include rem(padding,3px);
+    @include rem(line-height,10px);
+    @include rem(font-size,15px);
+}
+.button--small {
+    @include rem(padding,5px 10px);
+}
+.button--large {
+    @include rem(padding,20px 10px 20px 10px);
+}
+.button--big {
+    @include font-size(1.4);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.2);
+    }
+}
+.button--bigger {
+    @include font-size(1.6);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.4);
+    }
+}
+.button--block {
+    display: block;
+    width: 100%;
+}
+
+@mixin button--checkable($additional-padding: 0px) {
+    $checkable-box--size: 25px;
+
+    // Chackbox padding
+    $checkable-button--padding-top: 3px + $additional-padding;
+    $checkable-button--padding-bottom: $checkable-button--padding-top;
+    $checkable-button--padding-left: 5px + $additional-padding;
+    $checkable-button--padding-right: 7px + $additional-padding;
+
+    border: 1px solid darken($color-block, 5);
+    @include rem(line-height, $checkable-box--size + ($checkable-button--padding-top + $checkable-button--padding-bottom));
+
+    text-align: left;
+    position: relative;
+    color: darken($color-block, 40);
+    background-color: $color-tutu;
+    // Box space
+    @include rem(padding-left, $checkable-box--size + ($checkable-button--padding-left + $checkable-button--padding-right));
+
+    &:before, &:after {
+        content: '';
+        position: absolute;
+    }
+
+    &:before {
+        border: 1px solid $color-action;
+        background: $color-light;
+        @include rem(left, $checkable-button--padding-left);
+        @include rem(top, $checkable-button--padding-top);
+        @include rem(width, $checkable-box--size);
+        @include rem(height, $checkable-box--size);
+
+        @extend %transition-background-color;
+        @extend %transition-medium;
+    }
+
+    &:after {
+        font-family: $typo-icon;
+        content: '\e61d';
+        color: $color-light;
+        top: 0;
+        @include rem(left, $checkable-button--padding-left + 1px);
+        @include font-size(2.2);
+    }
+
+    &.active {
+        &:before {
+            background: $color-action;
+        }
+
+        color: $color-dark;
+    }
+}
+
+.button--checkable {
+    @include button--checkable();
+
+    &--no-border {
+        border: none;
+    }
+}

@@ -1,0 +1,31 @@
+// CREATE COLOR-BG FROM _VARS
+.bg-header {
+    background-color:$color-header;
+}
+.bg-footer {
+    background-color:$color-footer;
+}
+.bg-block {
+    background-color:$color-block;
+}
+.bg-block-d2 {
+    background-color: darken($color-block,2);
+}
+.bg-block-dark {
+    background-color: $color-block-dark;
+}
+.bg-offer {
+    background-color:$color-offer;
+}
+.bg-white {
+    background-color:$color-light;
+}
+.bg-black {
+    background-color:$color-dark;
+}
+.bg-odd {
+    background-color:$color-odd;
+}
+.bg-even {
+    background-color:$color-even;
+}

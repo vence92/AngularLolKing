@@ -1,0 +1,98 @@
+// DEFINE P
+p {
+    margin:0;
+    @include rem(padding,5px 0);
+}
+// FONT SIZE
+.smaller {
+    @include font-size(0.9);
+}
+.small {
+    @include font-size(1);
+}
+.normal {
+    @include font-size(1.2);
+}
+.big {
+    @include font-size(1.4);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.2);
+    }
+}
+.bigger {
+    @include font-size(1.6);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.3);
+    }
+}
+.biggest {
+    @include font-size(1.8);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.4);
+    }
+}
+.xbiggest {
+    @include font-size(2);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.5);
+    }
+}
+.xxbiggest {
+    @include font-size(2.1);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.6);
+    }
+}
+.bold{
+    font-weight: bold;
+}
+.italic{
+    font-style: italic;
+}
+.font-light {
+    font-family: "proxima-nova-n3","proxima-nova",sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+.font-regular {
+    font-family: "proxima-nova-n4","proxima-nova",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+.font-bold {
+    font-family: "proxima-nova-n7","proxima-nova",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+// TEXT-TRANSFORM
+.uppercase {
+    text-transform:uppercase;
+}
+.lowercase {
+    text-transform:lowercase;
+}
+.capitalize {
+    text-transform:capitalize;
+}
+// PAGINATION
+.text-left {
+    text-align:left;
+}
+.text-right {
+    text-align:right;
+}
+.text-center {
+    text-align:center;
+}
+.text-justify {
+    text-align:justify;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.break-word {
+    word-wrap: break-word;
+}
+.ellipsis {
+    @include ellipsis();
+}

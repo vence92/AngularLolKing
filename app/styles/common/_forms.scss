@@ -1,0 +1,436 @@
+// CREATE ELEMENT FORMS
+
+form {
+    width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    margin: 0;
+}
+
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+label,
+input,
+button,
+select,
+textarea {
+    font-weight: normal;
+    font-family: inherit;
+    @include font-size(1.4);
+    @include rem(line-height,16px);
+    @media (max-width:$medium-screen) {
+        @include font-size(1.2);
+    }
+}
+
+
+button {
+    border:0;
+}
+
+label {
+    display:inline-block;
+    @include rem(margin-bottom,5px);
+
+    @at-root{
+        .label--is-top {
+            vertical-align: top;
+            @include rem(padding-top,3px);
+        }
+        .label--is-required {
+            &:after {
+                content:' *';
+            }
+        }
+        .label--is-full {
+            width: 100% !important;
+        }
+    }
+}
+
+.tab-heading--is-required {
+    &:after {
+        content:' *';
+    }
+}
+
+select,
+textarea,
+input {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #f2f2f2;
+    color: $color-block-dark;
+    // Maybe a better solution? I've to use gradient to force it on safari.
+    background: $color-light;
+    -webkit-appearance: none;
+    @include rem(height,35px);
+    @include rem(line-height,18px);
+    @include rem(padding,4px);
+    border-radius: 4px;
+    &.is-small {
+        width: 50% !important;
+    }
+    &.is-large {
+        width: 100% !important;
+    }
+}
+
+textarea,
+input {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    @include animations($animations: 'border, box-shadow');
+    @extend %transition-medium;
+    &:focus {
+        border-color: rgba($color-action, 0.6);
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.01), 0 0 4px rgba($color-action, 0.8);
+    }
+    &.error, &.ng-dirty.ng-invalid {
+        @include input-invalid();
+    }
+}
+
+.form--agent {
+    input, select, textarea {
+        &.ng-invalid {
+            @include input-invalid();
+        }
+    }
+}
+
+.agenda__edit {
+    input, select, textarea{
+        &.ng-invalid {
+            @include input-invalid();
+        }
+    }
+    button {
+        &.ng-invalid {
+            @include input-invalid(0.9);
+        }
+    }
+}
+
+textarea {
+    @include rem(min-height, 80px);
+    @include rem(padding-right,40px);
+    background: $color-light;
+    background-image: url('/images/pen.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+textarea[disabled],
+textarea[readonly] {
+    overflow: hidden;
+}
+
+.textarea {
+    // textarea--is-big
+    @include m(is-big) {
+        @include rem(min-height, 200px);
+    }
+
+    // textarea--is-bigger
+    @include m(is-bigger) {
+        @include rem(min-height, 300px);
+    }
+}
+
+input[type="checkbox"]{
+    height:100%;
+    box-shadow:none;
+}
+input[type="radio"],
+input[type="checkbox"] {
+    margin-top: 1px \9;
+    line-height: normal;
+    @include rem(margin,4px 0 0);
+}
+
+input[type="file"],
+input[type="image"],
+input[type="reset"],
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+}
+
+input[type="file"] {
+    @include rem(height,35px);
+    @include rem(line-height,35px);
+}
+
+select[multiple],
+select[size] {
+    height: auto;
+}
+
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    border-color: rgba($color-action, 0.8);
+    outline: 0;
+    ouline-offset:-2px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.01), 0 0 4px rgba($color-action, 0.8);
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #999;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #999;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #999;
+}
+
+.radio,
+.checkbox {
+    @include rem(min-height,30px);
+    @include rem(padding-left,30px);
+}
+
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+    float: left;
+    @include rem(margin-left,-20px);
+}
+
+.radio.inline,
+.checkbox.inline {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    @include rem(padding-top,5px);
+}
+.radio.inline + .radio.inline,
+.checkbox.inline + .checkbox.inline {
+    @include rem(margin-left,10px);
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+    cursor: not-allowed;
+    background-color: #eeeeee;
+}
+
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"][readonly],
+input[type="checkbox"][readonly] {
+    background-color: transparent;
+}
+.input-collapse {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    position: relative;
+    @include font-size(0);
+    &.is-append {
+        > input, select {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    &.is-prepend {
+        > input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    > input {
+        width: 85%;
+    }
+    .button-append {
+        display: inline-block;
+        position: relative;
+        z-index: 10;
+        vertical-align: top;
+        @include rem(padding,6px);
+        @include rem(height,35px);
+        @include rem(margin,0 0 0 -2px);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .button-prepend {
+        display: inline-block;
+        position: relative;
+        z-index: 10;
+        vertical-align: top;
+        @include rem(padding,6px);
+        @include rem(height,35px);
+        @include rem(margin,0 -2px 0 0);
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .button-prepend, .button-append {
+        &.button--icon {
+            @include rem(padding,6px 6px 6px 40px);
+        }
+        @media (max-width:$medium-screen) {
+            @include rem(padding,8px);
+        }
+    }
+    .button-prepend, .button-append, > input {
+        &:focus {
+            border-color: #f2f2f2;
+            box-shadow: 0 0 0 0 rgba(0, 0, 0 ,0);
+        }
+    }
+}
+.input-collapse--double {
+    width: 100%;
+    border-radius: 3px;
+    @include rem(padding,5px 10px 5px 10px);
+    > input {
+        width: 60%;
+        @media (max-width:$medium-screen) {
+            width: 40%;
+        }
+    }
+}
+.input-collapse--vroom {
+    width: 100%;
+    > input {
+        width: 50%;
+        @media (max-width:$medium-screen) {
+            width: 42%;
+        }
+    }
+}
+
+//STYLE CHECKBOX
+
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked,
+input[type="radio"]:not(:checked),
+input[type="radio"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type="checkbox"]:not(:checked) + label,
+input[type="checkbox"]:checked + label,
+input[type="radio"]:not(:checked) + label,
+input[type="radio"]:checked + label {
+    position: relative;
+    cursor: pointer;
+    @include rem(padding-left,25px);
+    @at-root {
+        .label--is-empty {
+            @include rem(width,40px);
+            @include rem(height,40px);
+        }
+    }
+    @media (max-width: $medium-screen) {
+        @include rem(padding-left,30px);
+    }
+}
+
+input[type="checkbox"]:not(:checked) + label:before,
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:not(:checked) + label:before,
+input[type="radio"]:checked + label:before {
+    content: '';
+    position: absolute;
+    border: 1px solid $color-action;
+    background: $color-light;
+    left:0;
+    @include rem(top,5px);
+    @include rem(width,20px);
+    @include rem(height,20px);
+    @media (max-width: $medium-screen + 1) {
+        @include rem(width,25px);
+        @include rem(height,25px);
+    }
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="radio"]:checked + label:before {
+    border:1px solid $color-action;
+    background: $color-action;
+    box-shadow: 0 0 3px rgba($color-action,.7);
+}
+
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="checkbox"]:checked + label:after,
+input[type="radio"]:not(:checked) + label:after,
+input[type="radio"]:checked + label:after {
+    font-family: $typo-icon;
+    content: '\e61d';
+    position: absolute;
+    color: $color-action;
+    @include rem(top,6px);
+    @include rem(left,1px);
+    @include font-size(1.8);
+    @extend %transition-color;
+    @extend %transition-medium;
+    @media (max-width: $medium-screen + 1) {
+        @include rem(left,3px);
+        @include rem(top,8px);
+    }
+}
+
+
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="radio"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+  color: $color-light;
+}
+
+input[type="checkbox"]:disabled:not(:checked) + label:before,
+input[type="checkbox"]:disabled:checked + label:before,
+input[type="radio"]:disabled:not(:checked) + label:before,
+input[type="radio"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: darken($color-block,15);
+  background-color: $color-light;
+}
+
+input[type="checkbox"]:disabled:checked + label:after,
+input[type="radio"]:disabled:checked + label:after {
+  color: $color-block;
+}
+
+input[type="checkbox"]:disabled + label,
+input[type="radio"]:disabled + label {
+  color: $color-block;
+}
+
+input[type="checkbox"]:checked:focus + label:before,
+input[type="checkbox"]:not(:checked):focus + label:before,
+input[type="radio"]:checked:focus + label:before,
+input[type="radio"]:not(:checked):focus + label:before {
+  border: 1px solid darken($color-action,5);
+}

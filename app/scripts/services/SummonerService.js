@@ -2,7 +2,7 @@
 
 
 angular.module('lolApp')
-    .service('SummonerService', function ($http, $q) {
+    .service('SummonerService', function ($http) {
 
         var regions = {
             'br': 'br.api.pvp.net',
@@ -44,7 +44,7 @@ angular.module('lolApp')
                             api.summoner.rankedStats.summary = api.summoner.rankedStats[key];
                             delete(api.summoner.rankedStats[key]);
                         }
-                    })
+                    });
                 });
 
                 $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey).success(function(data){
@@ -53,11 +53,16 @@ angular.module('lolApp')
 
                 $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/summary?season=SEASON4&'+ ApiKey).success(function(data){
                     api.summoner.summary = data.playerStatSummaries;
-                })
+                });
 
                 $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id+'/entry?' + ApiKey).success(function(data){
                     api.summoner.league = data[api.summoner.id];
-                })
+                });
+
+                $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id + '?' + ApiKey).success(function(data) {
+                    api.summoner.leagueRanks = data[api.summoner.id];
+                    console.log(data);
+                });
             });
         }
 
@@ -79,11 +84,11 @@ angular.module('lolApp')
 
         function getWinRate(stats) {
             var winRate;
-            angular.forEach(api.summoner.rankedStats, function(value, key) {
+            angular.forEach(api.summoner.rankedStats, function() {
                /* console.log(value, key);*/
                 winRate = stats.totalSessionsWon /stats.totalSessionsPlayed * 100;
                 winRate = Math.round(winRate *10)/10;    
-            })
+            });
 
             return winRate;
         }

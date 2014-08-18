@@ -1,0 +1,12 @@
+//
+// Compass supa util stuff
+// --------------------------------------------------
+
+
+// Ellipsis
+// -------------------------
+@mixin ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,0 +1,20 @@
+// CREATE padding
+$value-paddings: 0, 1, 2, 5, 10, 15, 20, 40, 60, 80;
+$type-paddings: padding, padding-top, padding-right, padding-bottom, padding-left;
+
+@each $value in $value-paddings {
+    $value-name: nth($value, 1);
+    // Conversion to pixels using multiplication
+    // Link : https://gist.github.com/awestmoreland/5554996
+    $value-padding: $value-name*1px;
+    @each $type in $type-paddings {
+        $type-padding: nth($type, 1);
+        .l-#{$type}-#{$value-name} {
+            @if $value-name == 0 {
+                #{$type-padding} : 0;
+            } @else {
+                @include rem(#{$type-padding}, $value-padding);
+            }
+        }
+    }
+}

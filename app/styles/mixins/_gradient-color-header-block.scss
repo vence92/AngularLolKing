@@ -1,0 +1,6 @@
+@mixin gradient-color-header-block() {
+    // FALLBACK
+    background-color:$color-header-block-start;
+    // GRADIENT
+    background: linear-gradient(top,$color-header-block-start,$color-header-block-end);
+}

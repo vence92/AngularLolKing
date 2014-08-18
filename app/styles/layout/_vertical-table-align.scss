@@ -1,0 +1,25 @@
+//
+// Vertical table alignment tricks
+// --------------------------------------------------
+
+
+// Display table
+
+// l-display-table
+.l-display-table {
+    display: table;
+    width: 100%;
+    height: 100%;
+
+    // l-display-table__cell
+    &__cell {
+        display: table-cell;
+
+        // l-display-table__cell--middle
+        &--middle {
+            @extend .l-display-table__cell;
+            vertical-align: middle;
+        }
+    }
+}
+

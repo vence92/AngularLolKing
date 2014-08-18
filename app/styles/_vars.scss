@@ -1,0 +1,100 @@
+// SIZE
+$smart-screen: 767px;
+$small-screen: 800px;
+$medium-screen: 1024px;
+$screen-1280: 1280px;
+$screen-1368: 1368px;
+$large-screen: 1440px;
+
+
+// The defaults
+$slicer-breakpoints: (
+    small  : $small-screen, // Small
+    medium : $medium-screen, // Medium
+    large  : $large-screen, // Large
+);
+
+// TYPO ICON
+$typo-icon: "five-font";
+
+// COLOR HEADER & FOOTER
+$color-header:#252525;
+$color-footer:#515151;
+
+// COLOR MISC
+$color-neutral:#453f42;
+$color-action:#bbc610;
+$color-dark:#000;
+$color-light:#fff;
+$color-confirm:#99d551;
+$color-prioA:#e61010;
+$color-even:#e9e9e9;
+$color-odd:#fff;
+$color-warning:#ff6363;
+$color-tutu:#fffdfe;
+$color-bon-jour:#efedee;
+$color-gold:gold;
+$color-silver: #c0c0c0;
+$color-positive: #8ac25d;
+$color-negative: #ff6261;
+
+// COLOR HEADER BLOCK
+$color-header-block-start:#e8f572;
+$color-header-block-end:#bbc610;
+$color-header-block-start-hover:#f8dc9c;
+$color-header-block-end-hover:#f6a800;
+
+// COLOR BLOCK
+$color-block:#f2f2f2;
+
+// COLOR CATEGORIES
+$color-offer:#ed942e;
+$color-demand:#e15b8e;
+$color-customer:#26a8dc;
+$color-short-cut:#434343;
+$color-agenda:#6b5b8c;
+$color-vroom:$color-action;
+$color-highlight:#2fc4bb;
+
+// COLOR PICTO
+$color-new:#ffcc00;
+$color-mail:#afcb08;
+$color-message:#0b983a;
+$color-rapprochement:#e63023;
+$color-sms:#16aa94;
+$color-actions:#81358d;
+$color-visit:#bb7cb3;
+$color-edition:#04368b;
+$color-open:#00b1eb;
+$color-choose:#da001f;
+
+// COLOR UI
+$color-block-hover: $color-header;
+$color-block-active: darken($color-block,60);
+$color-block-dark: darken($color-block, 70); // #3f3f3f
+$color-even-dark: darken($color-even, 30);
+
+// COLORS AGENDA (RDV TYPES)
+$rdv-colors-map: (
+    bureau: #6d6de5,  //rgba(0,   0,   255, 1);//1.2)
+    exterieur: #83b381,  //rgba(0,   128, 0,   1)
+    visite: #b48180,  //rgba(128, 0,   0,   1)
+    prospection: #5ca6a7,  //rgba(0,   128, 128, 1);//1.5)
+    notaire: #a258a3,  //rgba(128, 0,   128, 1);//1.5)
+    repas: #ec88eb,  //rgba(255, 0,   255, 1)
+    conge: #c9c9c9,  //rgba(192, 192, 192, 1)
+    divers: #858585,  //rgba(0,   0,   0,   1);//1.5)
+    mandat: #ee7677,  //rgba(255, 0,   0,   1);//1.2)
+    estimation: #e0e07c,  //rgba(255, 255, 0,   1)
+    reunion: #abaac9,  //rgba(0,   0,   128, 0.8)
+    formation: #89eb88,  //rgba(0,   255, 0,   1)
+    entretien: #aeae7c,  //rgba(128, 128, 0,   1)
+    compromis: #7de1e1  //rgba(0,   255, 255, 1)
+);
+
+// GENERATED COLUMN NAMES
+
+$grid-column-list: '.l-col1' !global;
+@for $i from 2 through 12 {
+    $grid-column-list: "#{$grid-column-list}, .l-col#{$i}" !global;
+}

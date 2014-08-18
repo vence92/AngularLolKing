@@ -1,200 +1,32 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
-// endbower
+@import
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+    // Bower components
+    "../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss",
+    "../bower_components/fake-breakpoint-slicer/stylesheets/_breakpoint-slicer.scss",
 
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-family:Verdana;
-}
+    // IMPORT VARS APP FIVE
+    "vars",
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
+    // IMPORT ALL MIXIN
+    "mixins/all",
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
+    // IMPORT ALL KEYFRAMES
+    "keyframes/all",
 
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
-}
+    // IMPORT ALL COMMON
+    "common/all",
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
+    // IMPORT ALL LAYOUT
+    "layout/all",
 
-.container-narrow > hr {
-  margin: 30px 0;
-}
+    // IMPORT ALL COMMON
+    "help/all",
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+    // MODULES 
+    "modules/header",
+    "modules/profile",
+    "modules/media",
+    "modules/button",
 
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
-
-
-//VARS
-
-// SIZE
-$smart-screen: 767px;
-$small-screen: 800px;
-$medium-screen: 1024px;
-$screen-1280: 1280px;
-$screen-1368: 1368px;
-$large-screen: 1440px;
-
-
-
-
-// COLOR HEADER & FOOTER
-$color-header:#252525;
-$color-footer:#515151;
-
-// COLOR MISC
-$color-neutral:#453f42;
-$color-action:#bbc610;
-$color-dark:#000;
-$color-light:#fff;
-$color-confirm:#99d551;
-$color-prioA:#e61010;
-$color-even:#e9e9e9;
-$color-odd:#fff;
-$color-warning:#ff6363;
-$color-tutu:#fffdfe;
-$color-bon-jour:#efedee;
-$color-gold:gold;
-$color-silver: #c0c0c0;
-$color-positive: #8ac25d;
-$color-negative: #ff6261;
-
-// COLOR HEADER BLOCK
-$color-header-block-start:#e8f572;
-$color-header-block-end:#bbc610;
-$color-header-block-start-hover:#f8dc9c;
-$color-header-block-end-hover:#f6a800;
-
-// COLOR BLOCK
-$color-block:#f2f2f2;
-
-// COLOR CATEGORIES
-$color-offer:#ed942e;
-$color-demand:#e15b8e;
-$color-customer:#26a8dc;
-$color-short-cut:#434343;
-$color-agenda:#6b5b8c;
-$color-vroom:$color-action;
-$color-highlight:#2fc4bb;
-
-// COLOR PICTO
-$color-new:#ffcc00;
-$color-mail:#afcb08;
-$color-message:#0b983a;
-$color-rapprochement:#e63023;
-$color-sms:#16aa94;
-$color-actions:#81358d;
-$color-visit:#bb7cb3;
-$color-edition:#04368b;
-$color-open:#00b1eb;
-$color-choose:#da001f;
-
-// COLOR UI
-$color-block-hover: $color-header;
-$color-block-active: darken($color-block,60);
-$color-block-dark: darken($color-block, 70); // #3f3f3f
-$color-even-dark: darken($color-even, 30);
-
-
-.text-center {
-    text-align: center;
-}
-
-
-
-
-
-.block {
-    color:#fff;
-    padding: 0;
-    margin:10px 0;
-    .block__header {
-        background:$color-header;
-        color:$color-block;
-        padding:10px;
-    }
-    .block__content {
-        background:$color-block-active;
-        padding:10px;
-    }
-}
-
-
-
-.champion {
-    .champion__block {
-        margin:10px;
-    }
-    .champion__image {
-        width:48px;
-        height:48px;
-    }
-}
+    // IMPORT FIVE
+    "five-elements";
