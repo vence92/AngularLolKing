@@ -30,6 +30,31 @@ angular.module('lolApp')
 
                 $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey).success(function(data){
                     api.summoner.masteries = data[api.summoner.id].pages;
+                    var offense, defense, utilitary;
+                    angular.forEach(api.summoner.masteries, function(masteryPage){
+                        offense = 0;
+                        defense = 0;
+                        utilitary = 0;
+                        angular.forEach(masteryPage.masteries, function(mastery) {
+
+                            switch (mastery.id.toString().charAt(1)) {
+                                case '1':
+                                    offense += mastery.rank;
+                                break;
+                                case '2':
+                                    defense += mastery.rank;
+                                break;
+                                case '3': 
+                                    utilitary += mastery.rank;
+                                break;
+                            }
+                        });
+                        masteryPage.points = {
+                            offense : offense,
+                            defense : defense,
+                            utilitary : utilitary
+                        };
+                    });
                 });
 
                 $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/runes?' + ApiKey).success(function(data){

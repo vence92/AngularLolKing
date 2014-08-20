@@ -8,12 +8,12 @@
  * Controller of the lolAppApp
  */
 angular.module('lolApp')
-.controller('MasteriesCtrl', function ($scope, StaticDataService, SummonerService) {
+.controller('MasteriesCtrl', function ($scope, $filter, StaticDataService, SummonerService) {
     $scope.summoner = SummonerService.summoner;
     $scope.block = 3;
     $scope.currentIndex = 0;
     $scope.getBlockNumber = function(block) {
-        return new Array(block); 
+        return new Array(block);
     }
     $scope.getMasteryPage = function(page) {
         $scope.currentIndex = page;
@@ -29,5 +29,8 @@ angular.module('lolApp')
             });
         });    
     }; 
+    $scope.getMasteriesPoints = function(index) {
+        return $filter('formatTypeMastery')(index);
+    }
     $scope.getMasteryPage(0);
 });

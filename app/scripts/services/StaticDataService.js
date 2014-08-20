@@ -8,7 +8,6 @@ angular.module('lolApp')
         var ApiUrl = 'https://global.api.pvp.net/api/lol/static-data/euw';
 
         function getMasteries() {
-
             return $http.get(ApiUrl + '/v1.2/mastery?masteryListData=all&' + ApiKey).success(function(masteries){
                 angular.forEach(masteries.data, function(mastery) {
                     mastery.currentRank = 0;
@@ -29,7 +28,7 @@ angular.module('lolApp')
         var api = {
             masteries: [],
             getMasteries: getMasteries,
-            getMasteryConf : getMasteryConf,
+            getMasteryConf : getMasteryConf
         };
 
     return api;

@@ -141,17 +141,49 @@
 }
 
 .mastery {
+    @include rem(padding,10px);
+    background-color: $color-block-dark;
     &__page {
-        @include rem(padding,20px);
         @include font-size(1.8);
+        @include rem(height,591px);
+        overflow-y:scroll;
         border:solid 3px $color-block;
         border-radius: 3px;
+        &__list {
+            > li {
+                border-bottom:solid 1px $color-block;
+                text-align: center;
+                background-color:$color-header;
+                cursor: pointer;
+                color:$color-light;
+                @include rem(padding,10px 0);
+                @extend %transition-background-color;
+                @extend %transition-medium;
+                &:hover {
+                    background-color: lighten($color-header,20);
+                    color:darken($color-light,20);
+                }
+                &.is-active {
+                    background-color: $color-light;
+                    color:$color-header;
+                }
+                &:last-child {
+                    border:none;
+                }
+            }
+        }
     } 
     &__tree {
         @include rem(width, 827px);
         @include rem(height, 479px);
-        @include rem(margin-top, 20px);
-        margin: 0 auto;
+        margin:50px auto 0 auto;
+    }
+    &__totalPoints {
+        position: absolute;
+        bottom:5px;
+        right:10px;
+        color:$color-light;
+        @include font-size(1.8);
     }
 }
 
@@ -167,12 +199,34 @@
     .mastery__item {
         border:solid 1px $color-dark;
         border-radius:3px;
+        .mastery__description {
+            display: none;
+            position: absolute;
+            right: -15px;
+            bottom: -20px;
+            border:solid 5px $color-gold;
+            border-radius: 5px;
+            background: $color-dark;
+            min-width:300px;
+            @include rem(padding,10px);
+            @include font-size(1.4);
+        }
+        &:hover {
+            .mastery__description {
+                display:block;
+            }
+        }
     }
     .mastery__inactive {
         opacity:0.3;
         .mastery__ranks {
             opacity: 0.8;
             color:$color-action;
+        }
+        &:hover {
+            .mastery__description {
+                opacity: 1 !important;
+            }
         }
     }
     .mastery__ranks {
@@ -187,7 +241,6 @@
         background-color: $color-dark;
         text-align: center;
         @include font-size(1);
-
     }
 }
 

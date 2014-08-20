@@ -27,4 +27,15 @@ angular.module('lolApp')
         };
         return divisionTab[division];
     };
+})
+
+.filter('formatTypeMastery', function(){
+    return function(type) {
+        var typeTable = {
+            0 : 'offense',
+            1 : 'defense',
+            2 : 'utilitary'
+        };
+        return typeTable[type];
+    };
 });
