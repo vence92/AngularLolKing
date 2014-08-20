@@ -1,5 +1,5 @@
 <div ng-show="loading">Chargement...</div>
-<dig ng-hide="loading" class="summoner relative" >
+<div ng-hide="loading" class="summoner relative">
     <div class="summoner__chosen">
         <h3>
             {{summoner.name}}
@@ -7,12 +7,12 @@
     </div>
     <nav ng-show="summoner.name" class="summoner__menu text-center">
         <ul>
-            <li><a ui-sref="summoners.profile">Profile</a></li>
-            <li><a ui-sref="summoners.leagues">Leagues</a></li>
-            <li><a ui-sref="summoners.rankedstats">Ranked Stats</a></li>
-            <li><a ui-sref="summoners.matches">Matches</a></li>
-            <li><a ui-sref="summoners.masteries">Masteries</a></li>
-            <li><a ui-sref="summoners.runes">Runes</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.profile')}"><a ui-sref="summoners.profile">Profile</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.leagues')}"><a ui-sref="summoners.leagues">Leagues</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.rankedstats')}"><a ui-sref="summoners.rankedstats">Ranked Stats</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.matches')}"><a ui-sref="summoners.matches">Matches</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.masteries')}"><a ui-sref="summoners.masteries">Masteries</a></li>
+            <li ng-class="{'is-active': $state.is('summoners.runes')}"><a ui-sref="summoners.runes">Runes</a></li>
         </ul>
         <div ui-view></div>
     </nav>

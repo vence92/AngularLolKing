@@ -1,8 +1,18 @@
- <div class="col-md-3 block">
-    <div class="block__header">
-        Maitrises
+<div class="l-row mastery">
+    <div class="l-col3 mastery__page">
+        <ul class="mastery__page__list">
+            <li ng-repeat="mastery in summoner.masteries | orderBy: 'mastery.name'" class="ellipsis" ng-click="getMasteryPage($index);" ng-class="{'is-active': currentIndex == $index}">
+                {{mastery.name}}
+            </li>
+        </ul>
     </div>
-   <div ng-repeat="mastery in summoner.masteries" class="block__content">
-        {{mastery.name}}
-   </div>
+    <div class="mastery__tree l-col9">
+        <div ng-repeat="block in getBlockNumber(block) track by $index" class="rg-mastery-trunk block{{$index + 1}}" style="background:url(//lkimg.zamimg.com/images/mastery-tree-{{$index + 1}}.jpg);background-position:265px;">
+            <div ng-repeat="mastery in masteries" class="top{{mastery.config.top}} left{{mastery.config.left}} mastery__item" style="background:url(http://ddragon.leagueoflegends.com/cdn/4.14.2/img/sprite/{{mastery.image.sprite}});background-position: -{{mastery.image.x}}px -{{mastery.image.y}}px; width:48px; height:48px; position:absolute;" ng-show="mastery.config.block == {{$parent.$index + 1}}" ng-class="{'mastery__inactive' : mastery.currentRank == 0}">
+                <div class="mastery__ranks">
+                    {{mastery.currentRank}} / {{mastery.ranks }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

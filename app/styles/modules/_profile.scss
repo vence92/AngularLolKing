@@ -27,8 +27,15 @@
                 &:last-child {
                     border-right:none;
                 }
+                &:hover {
+                    background-color: lighten($color-header,20);
+                    color:darken($color-light,20);
+                }
                 &.is-active {
                     background-color: $color-light;
+                    > a {
+                        color:$color-header;
+                    }
                 }
                 > a {
                     width:100%;
@@ -102,4 +109,118 @@
             }
         }
     }
+}
+
+
+.summoner__table {
+    @include font-size(1.4);
+    ul {
+        display: table;
+        width:100%;
+        > li {
+            display: table-cell;
+            width:5%;
+            border-right:solid 1px $color-block;
+            @include rem(padding,10px);
+            &:last-child {
+                border:none;
+            }
+        }
+    }
+}
+
+.summoner__rankedstats {
+    ul {
+        &.summoner__table__header {
+            background: $color-highlight;
+        }
+        > li {
+            width:12.5%; 
+        }
+    }
+}
+
+.mastery {
+    &__page {
+        @include rem(padding,20px);
+        @include font-size(1.8);
+        border:solid 3px $color-block;
+        border-radius: 3px;
+    } 
+    &__tree {
+        @include rem(width, 827px);
+        @include rem(height, 479px);
+        @include rem(margin-top, 20px);
+        margin: 0 auto;
+    }
+}
+
+.rg-mastery-trunk {
+    position: relative;
+    width:270px;
+    margin:1px;
+    height:479px;
+    text-align: left;
+    float:left;
+    border-radius:3px;
+    border:solid 3px darken($color-block,20);
+    .mastery__item {
+        border:solid 1px $color-dark;
+        border-radius:3px;
+    }
+    .mastery__inactive {
+        opacity:0.3;
+        .mastery__ranks {
+            opacity: 0.8;
+            color:$color-action;
+        }
+    }
+    .mastery__ranks {
+        position: absolute;
+        bottom:-15px;
+        left:7px;
+        right:7px;
+        padding:2px;
+        border-radius:10px;
+        color:$color-gold;
+        border:solid 2px $color-gold;
+        background-color: $color-dark;
+        text-align: center;
+        @include font-size(1);
+
+    }
+}
+
+
+.top1 {
+    top:16px;
+}
+.top2 {
+    top:88px;
+}
+.top3 {
+    top:160px;
+}
+.top4 {
+    top:232px;
+}
+.top5 {
+    top:304px;
+}
+.top6 {
+    top:376px;
+}
+
+
+.left1 {
+    left:16px;
+}
+.left2 {
+    left:78px;
+}
+.left3 {
+    left:138px;
+}
+.left4 {
+    left:202px;
 }

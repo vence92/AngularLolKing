@@ -55,15 +55,13 @@ angular
             })
             .state('summoners.masteries', {
                 url: '/masteries',
-                templateUrl: 'views/Summoners/masteries.html'
+                templateUrl: 'views/Summoners/masteries.html',
+                controller: 'MasteriesCtrl'
             })
             .state('summoners.runes', {
                 url: '/runes',
                 templateUrl: 'views/Summoners/runes.html'
             });
 
-  })
-  .run(function(ChampionService){
-    ChampionService.getChampion();
-  });
+    });
 

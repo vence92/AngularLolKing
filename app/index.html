@@ -43,8 +43,12 @@
         </header>
     </div>
     <div class="container container--large">
-        <div class="screen--large clearfix">
-            <div ui-view></div>
+        <div class="container container--wrapped">
+            <div class="container container--embed">
+                <div class="screen--large">
+                    <div ui-view></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container container--fixed container--browse z10 bg-block-dark">
@@ -102,9 +106,11 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/services/SummonerService.js"></script>
         <script src="scripts/services/ChampionService.js"></script>
+        <script src="scripts/services/StaticDataService.js"></script>
         <script src="scripts/controllers/ChampionsCtrl.js"></script>
         <script src="scripts/controllers/SummonersCtrl.js"></script>
         <script src="scripts/controllers/HomeCtrl.js"></script>
+        <script src="scripts/controllers/MasteriesCtrl.js"></script>
         <script src="scripts/filters/MainFilters.js"></script>
         <!-- endbuild -->
 </body>

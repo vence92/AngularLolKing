@@ -1,52 +1,54 @@
-<div class="row">
-	<div class="col-md-1">
-		Champion
-	</div>
-	<div class="col-md-1">
-		Wins
-	</div>
-	<div class="col-md-1">
-		Losses
-	</div>
-	<div class="col-md-1">
-		Wins %
-	</div>
-	<div class="col-md-1">
-		Kills /game
-	</div>
-	<div class="col-md-1">
-		Deaths / game
-	</div>
-	<div class="col-md-1">
-		Assists / game
-	</div>
-	<div class="col-md-1">
-		Creeps / game
-	</div>
+<div class="summoner__table summoner__rankedstats"> 
+    <ul class="l-row summoner__table__header">
+    	<li>
+    		Champion
+    	</li>
+    	<li>
+    		Wins
+    	</li>
+    	<li>
+    		Losses
+    	</li>
+    	<li>
+    		Wins %
+    	</li>
+    	<li>
+    		Kills /game
+    	</li>
+    	<li>
+    		Deaths / game
+    	</li>
+    	<li>
+    		Assists / game
+    	</li>
+    	<li>
+    		Creeps / game
+    	</li>
+    </ul>
+    <ul class="l-row summoner__table__content" ng-repeat="rankedstats in summoner.rankedStats" ng-if="rankedstats.name">
+    	<li>
+    		{{rankedstats.name}}
+    	</li>
+    	<li>
+    		{{rankedstats.stats.totalSessionsWon}}
+    	</li>
+    	<li>
+    		{{rankedstats.stats.totalSessionsLost}}
+    	</li>
+    	<li>
+    		{{rankedstats.winRate}} %
+    	</li>
+    	<li>
+    		{{rankedstats.statsByGame.totalChampionKills}}
+    	</li>
+    	<li>
+    		{{rankedstats.statsByGame.totalDeathsPerSession}}
+    	</li>
+    	<li>
+    		{{rankedstats.statsByGame.totalAssists}}
+    	</li>
+    	<li>
+    		{{rankedstats.statsByGame.totalMinionKills}}
+    	</li>
+    </ul>
 </div>
-<div class="row" ng-repeat="rankedstats in summoner.rankedStats" ng-if="rankedstats.name">
-	<div class="col-md-1">
-		{{rankedstats.name}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.stats.totalSessionsWon}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.stats.totalSessionsLost}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.winRate}} %
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.statsByGame.totalChampionKills}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.statsByGame.totalDeathsPerSession}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.statsByGame.totalAssists}}
-	</div>
-	<div class="col-md-1">
-		{{rankedstats.statsByGame.totalMinionKills}}
-	</div>
-</ul>

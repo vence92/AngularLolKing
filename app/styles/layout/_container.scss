@@ -11,8 +11,7 @@
         outline: 0;
     }
     &--wrapped {
-        @include rem(top,50px);
-        @include rem(margin-bottom,36px);
+        @include rem(margin-bottom,100px);
         @media (max-height:$small-screen) {
             @include rem(top,45px);
         }
@@ -22,8 +21,7 @@
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         background: $color-light;
-        @include rem(padding,10px);
-        @include rem(top,56px);
+        @include rem(top,0px);
         @media (max-height:$small-screen) {
             @include rem(top,33px);
         }

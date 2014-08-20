@@ -23,7 +23,6 @@ angular.module('lolApp')
 
             var ApiKey = 'api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183';
             var ApiUrl = 'https://'+ api.regions[selectedRegion] + '/api/lol/'+ selectedRegion;
-            console.log(selectedRegion); 
 
             return $http.get(ApiUrl + '/v1.4/summoner/by-name/' + name + '?' + ApiKey).success(function(data){
                 
@@ -61,7 +60,6 @@ angular.module('lolApp')
 
                 $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id + '?' + ApiKey).success(function(data) {
                     api.summoner.leagueRanks = data[api.summoner.id];
-                    console.log(data);
                 });
             });
         }
