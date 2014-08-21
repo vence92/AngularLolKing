@@ -1,7 +1,7 @@
 <div class="l-row mastery">
     <div class="l-col2 mastery__page">
         <ul class="mastery__page__list">
-            <li ng-repeat="mastery in summoner.masteries" class="ellipsis" ng-click="getMasteryPage($index);" ng-class="{'is-active': currentIndex == $index}">
+            <li ng-repeat="mastery in summoner.masteries" class="ellipsis capitalize" ng-click="getMasteryPage($index);" ng-class="{'is-active': currentIndex == $index, 'is-current': mastery.current}">
                 {{mastery.name}}
             </li>
         </ul>
@@ -13,9 +13,9 @@
                     <div class="mastery__ranks">
                         {{mastery.currentRank}} / {{mastery.ranks }}
                     </div>
-                    <div class="mastery__description">
+                    <!-- <div class="mastery__description">
                         <div ng-repeat="description in mastery.description">{{description}}</div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mastery__totalPoints">
                     <span class="uppercase">{{getMasteriesPoints($index)}} : </span>

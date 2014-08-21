@@ -1,14 +1,10 @@
 .summoner {
     &__chosen {
-        @include rem(padding-left,40px);
-        @include font-size(2);
-        &:after {
-            content: "\e608";
-            font-family:'icomoon';
-            position: absolute;
-            left:0;
-            top:0;
-            @include font-size(3);
+        @include rem(margin-bottom,10px);
+        h3 {
+            @include rem(line-height,55px);
+            @include rem(padding-left,68px);
+            @include font-size(2);
         }
     }
     &__menu {
@@ -146,11 +142,13 @@
     &__page {
         @include font-size(1.8);
         @include rem(height,591px);
+        background-color:$color-header;
         overflow-y:scroll;
         border:solid 3px $color-block;
         border-radius: 3px;
         &__list {
             > li {
+                position: relative;
                 border-bottom:solid 1px $color-block;
                 text-align: center;
                 background-color:$color-header;
@@ -163,12 +161,19 @@
                     background-color: lighten($color-header,20);
                     color:darken($color-light,20);
                 }
+                &.is-current {
+                    &:after {
+                        content: "\e610";
+                        font-family: icomoon;
+                        position:absolute;
+                        top:5px;
+                        left:5px;
+                        @include font-size(1.2);
+                    }
+                }
                 &.is-active {
                     background-color: $color-light;
                     color:$color-header;
-                }
-                &:last-child {
-                    border:none;
                 }
             }
         }
@@ -195,7 +200,7 @@
     text-align: left;
     float:left;
     border-radius:3px;
-    border:solid 3px darken($color-block,20);
+    border:solid 3px darkgoldenrod;
     .mastery__item {
         border:solid 1px $color-dark;
         border-radius:3px;
@@ -225,7 +230,7 @@
         }
         &:hover {
             .mastery__description {
-                opacity: 1 !important;
+                opacity: 1!important;
             }
         }
     }
