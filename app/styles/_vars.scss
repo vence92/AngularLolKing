@@ -33,7 +33,6 @@ $color-odd:#fff;
 $color-warning:#ff6363;
 $color-tutu:#fffdfe;
 $color-bon-jour:#efedee;
-$color-gold:gold;
 $color-silver: #c0c0c0;
 $color-positive: #8ac25d;
 $color-negative: #ff6261;
@@ -98,3 +97,12 @@ $grid-column-list: '.l-col1' !global;
 @for $i from 2 through 12 {
     $grid-column-list: "#{$grid-column-list}, .l-col#{$i}" !global;
 }
+
+// COLORS TIERS 
+
+$color-diamond:rgba(190,217,184, 1);
+$color-platinum:rgba(4,141,134, 1);
+$color-gold:rgba(232,208,108, 1);
+$color-silver:rgba(153,165,161, 1);
+$color-bronze:rgba(164,137,92, 1);
+

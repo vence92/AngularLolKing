@@ -2,8 +2,8 @@
     &__chosen {
         @include rem(margin-bottom,10px);
         h3 {
-            @include rem(line-height,55px);
-            @include rem(padding-left,68px);
+            @include rem(line-height,32px);
+            @include rem(padding-left,40px);
             @include font-size(2);
         }
     }
@@ -44,8 +44,30 @@
     }
 }
 
-
 .profile__block {
+    &__tier {
+        &--DIAMOND {
+            border-bottom:solid 3px $color-diamond;
+            color:darken($color-diamond,30);
+        }
+        &--PLATINUM {
+            border-bottom:solid 3px $color-platinum;
+            color:$color-platinum;
+        }
+        &--GOLD {
+            border-bottom:solid 3px darken($color-gold,30);
+            color:darken($color-gold,30);
+        }
+        &--SILVER {
+            border-bottom:solid 3px darken($color-silver,30);
+            color:darken($color-silver,30);
+        }
+        &--BRONZE {
+            border-bottom:solid 3px $color-bronze;
+            color:darken($color-bronze,30);
+        }
+    }
+
     &__header {
         text-align: left;
         background: $color-header;
@@ -63,9 +85,8 @@
         }
     }
     &__content {
-        background: lighten($color-header,20);
+        background: $color-block;
         color:$color-light;
-        @include rem(padding,10px);
         @include font-size(1.4);
         &--stats {
             padding:0;
@@ -78,6 +99,15 @@
                 &:last-child {
                     border-bottom:none;
                 }
+            }
+        }
+        .l-col4 {
+            margin:0!important;
+            width:33.3%!important;
+            @include rem(padding,10px);
+            border-right:solid 1px darken($color-block,10);
+            &:last-child {
+                border-right:none;
             }
         }
     }
@@ -179,9 +209,8 @@
         }
     } 
     &__tree {
-        @include rem(width,1000px);
+        @include rem(width, 827px);
         @include rem(height, 479px);
-        overflow-y: scroll; 
         margin:50px auto 0 auto;
     }
     &__totalPoints {

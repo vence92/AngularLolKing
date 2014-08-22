@@ -27,7 +27,7 @@ header {
 
 // FOOTER
 footer {
-    @include rem(height, 100px);
+    @include rem(height, 50px);
 }
 // debug angular
 .ng-animate-start,

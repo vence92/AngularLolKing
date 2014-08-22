@@ -32,11 +32,12 @@
                 Personal Ratings
             </div>
             <div class="profile__block__content l-row">
-                <div ng-repeat="league in summoner.league" class="l-col4 text-center">
+                <div ng-repeat="league in summoner.league" class="l-col4 text-center profile__block__tier--{{league.tier}}">
                     <div class="big bold">{{league.queue | formatGameType}}</div>
                     <div style="height: 154px;
                             background:url('//lkimg.zamimg.com/images/medals/{{league.tier | lowercase}}_{{league.entries[0].division | formatDivision}}.png') no-repeat;
-                            background-position: center">
+                            background-position: center"
+                        >
                     </div>
                     <div class="big bold l-margin-bottom-10" >{{league.tier}} {{league.entries[0].division}}</div>
                     <div class="l-margin-bottom-10">{{league.entries[0].leaguePoints}} League Points</div>
