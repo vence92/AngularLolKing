@@ -11,7 +11,7 @@ angular.module('lolApp')
 .controller('MasteriesCtrl', function ($scope, $filter, StaticDataService, SummonerService) {
     $scope.summoner = SummonerService.summoner;
     $scope.block = 3;
-    $scope.currentIndex = 0;
+    $scope.currentIndex = $scope.summoner.currentPage;
     $scope.getBlockNumber = function(block) {
         return new Array(block);
     }
@@ -22,15 +22,14 @@ angular.module('lolApp')
             /*console.log($scope.masteries);*/
             angular.forEach($scope.summoner.masteries[page].masteries, function(mastery){
                 if($scope.masteries[mastery.id]) {
-                    console.log($scope.masteries[mastery.id]);
-                    console.log(mastery.rank);
                     $scope.masteries[mastery.id].currentRank = mastery.rank;
                 }
             });
         });    
     }; 
     $scope.getMasteriesPoints = function(index) {
+        console.log($filter('formatTypeMastery')(index));
         return $filter('formatTypeMastery')(index);
     }
-    $scope.getMasteryPage(0);
+    $scope.getMasteryPage($scope.summoner.currentPage);
 });

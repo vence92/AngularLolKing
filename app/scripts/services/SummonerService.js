@@ -2,7 +2,7 @@
 
 
 angular.module('lolApp')
-    .service('SummonerService', function ($http) {
+    .service('SummonerService', function ($http, $state) {
 
         var regions = {
             'br': 'br.api.pvp.net',
@@ -31,7 +31,7 @@ angular.module('lolApp')
                 $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey).success(function(data){
                     api.summoner.masteries = data[api.summoner.id].pages;
                     var offense, defense, utilitary;
-                    angular.forEach(api.summoner.masteries, function(masteryPage){
+                    angular.forEach(api.summoner.masteries, function(masteryPage, key){
                         offense = 0;
                         defense = 0;
                         utilitary = 0;
@@ -53,6 +53,9 @@ angular.module('lolApp')
                             offense : offense,
                             defense : defense,
                             utilitary : utilitary
+                        };
+                        if(masteryPage.current) {
+                            api.summoner.currentPage = key;
                         };
                     });
                 });
@@ -86,6 +89,9 @@ angular.module('lolApp')
                 $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id + '?' + ApiKey).success(function(data) {
                     api.summoner.leagueRanks = data[api.summoner.id];
                 });
+            })
+            .error(function(data){
+                alert('No datas');
             });
         }
 
