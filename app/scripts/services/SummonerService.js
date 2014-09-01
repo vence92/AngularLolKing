@@ -22,10 +22,11 @@ angular.module('lolApp')
 
             var ApiKey = 'api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183';
             var ApiUrl = 'https://'+ api.regions[selectedRegion] + '/api/lol/'+ selectedRegion;
+            
             return $http.get(ApiUrl + '/v1.4/summoner/by-name/' + name + '?' + ApiKey).then(function(data){
                 api.summoner = data.data[name];
                 $q.all([
-                    $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey),
+                    $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/ee?' + ApiKey),
                     $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/runes?' + ApiKey),
                     $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey),
                     $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey),
@@ -41,6 +42,7 @@ angular.module('lolApp')
                     api.summoner.summary = responses[4].data.playerStatSummaries;
                     api.summoner.league = responses[5].data[api.summoner.id];
                     api.summoner.leagueRanks = responses[6].data[api.summoner.id];
+                    console.log(responses)
 
                     // Maitrises traitements
 
@@ -86,7 +88,9 @@ angular.module('lolApp')
                     });
                     sortableChamps.sort(function(a, b) {return b[1] - a[1]});
                     api.summoner.mostPlayedChamps = sortableChamps.slice(0,10);
-                })
+                }, function(error) {
+                    console.log('L\'url suivante est erronée :' + error.config.url);
+                });
                 return api.summoner;
             });  
         }
