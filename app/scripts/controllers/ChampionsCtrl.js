@@ -8,10 +8,11 @@
  * Controller of the lolAppApp
  */
 
-myapp.controller('ChampionsCtrl', function ($scope, ChampionService) {
+angular.module('lolApp')
+    .controller('ChampionsCtrl', function ($scope, ChampionService) {
     
-    ChampionService.getChampion().then(function(champions){
-        $scope.champions = champions.data.data;
-    });
+        ChampionService.getChampion().then(function(champions){
+            $scope.champions = champions.data.data;
+        });
 
-  });
+    });

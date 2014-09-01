@@ -2,7 +2,7 @@
 
 
 angular.module('lolApp')
-    .service('SummonerService', function ($http, $state) {
+    .service('SummonerService', function ($http, $q) {
 
         var regions = {
             'br': 'br.api.pvp.net',
@@ -18,18 +18,32 @@ angular.module('lolApp')
             'global' : 'global.api.pvp.net'
         };
 
-
         function getSummoner(name, selectedRegion) {
 
             var ApiKey = 'api_key=eb5cff4a-9a8a-4932-a8f8-429e6d9c7183';
             var ApiUrl = 'https://'+ api.regions[selectedRegion] + '/api/lol/'+ selectedRegion;
+            return $http.get(ApiUrl + '/v1.4/summoner/by-name/' + name + '?' + ApiKey).then(function(data){
+                api.summoner = data.data[name];
+                $q.all([
+                    $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey),
+                    $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/runes?' + ApiKey),
+                    $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey),
+                    $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey),
+                    $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/summary?season=SEASON4&'+ ApiKey),
+                    $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id+'/entry?' + ApiKey),
+                    $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id + '?' + ApiKey)
+                ])
+                .then(function(responses) {
+                    api.summoner.masteries = responses[0].data[api.summoner.id].pages;
+                    api.summoner.runes = responses[1].data[api.summoner.id].pages;
+                    api.summoner.rankedStats = responses[2].data.champions;
+                    api.summoner.recentGames = responses[3].data.games;
+                    api.summoner.summary = responses[4].data.playerStatSummaries;
+                    api.summoner.league = responses[5].data[api.summoner.id];
+                    api.summoner.leagueRanks = responses[6].data[api.summoner.id];
 
-            return $http.get(ApiUrl + '/v1.4/summoner/by-name/' + name + '?' + ApiKey).success(function(data){
-                
-                api.summoner = data[name];
+                    // Maitrises traitements
 
-                $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/masteries?' + ApiKey).success(function(data){
-                    api.summoner.masteries = data[api.summoner.id].pages;
                     var offense, defense, utilitary;
                     angular.forEach(api.summoner.masteries, function(masteryPage, key){
                         offense = 0;
@@ -56,17 +70,10 @@ angular.module('lolApp')
                         };
                         if(masteryPage.current) {
                             api.summoner.currentPage = key;
-                        };
+                        }
                     });
-                });
 
-                $http.get(ApiUrl + '/v1.4/summoner/'+ api.summoner.id + '/runes?' + ApiKey).success(function(data){
-                    api.summoner.runes = data[api.summoner.id].pages;
-                });
-
-                $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey).success(function(data){
-                    api.summoner.rankedStats = data.champions;
-                    var mostPlayedChamps = [];
+                    // Statistiques Parties classées traitements
                     var sortableChamps = [];
                     angular.forEach(api.summoner.rankedStats, function(value, key){
                         if(value.id === 0) {
@@ -79,28 +86,9 @@ angular.module('lolApp')
                     });
                     sortableChamps.sort(function(a, b) {return b[1] - a[1]});
                     api.summoner.mostPlayedChamps = sortableChamps.slice(0,10);
-                    console.log(api.summoner.mostPlayedChamps);
-                });
-
-                $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey).success(function(data){
-                    api.summoner.recentGames = data.games;
-                });
-
-                $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/summary?season=SEASON4&'+ ApiKey).success(function(data){
-                    api.summoner.summary = data.playerStatSummaries;
-                });
-
-                $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id+'/entry?' + ApiKey).success(function(data){
-                    api.summoner.league = data[api.summoner.id];
-                });
-
-                $http.get(ApiUrl + '/v2.4/league/by-summoner/'+ api.summoner.id + '?' + ApiKey).success(function(data) {
-                    api.summoner.leagueRanks = data[api.summoner.id];
-                });
-            })
-            .error(function(data){
-                alert('No datas');
-            });
+                })
+                return api.summoner;
+            });  
         }
 
 
@@ -122,7 +110,6 @@ angular.module('lolApp')
         function getWinRate(stats) {
             var winRate;
             angular.forEach(api.summoner.rankedStats, function() {
-               /* console.log(value, key);*/
                 winRate = stats.totalSessionsWon /stats.totalSessionsPlayed * 100;
                 winRate = Math.round(winRate *10)/10;    
             });

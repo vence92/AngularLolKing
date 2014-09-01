@@ -12,7 +12,7 @@ angular.module('lolApp')
                 angular.forEach(masteries.data, function(mastery) {
                     mastery.currentRank = 0;
                     mastery.config = api.getMasteryConf(mastery.id);
-                })
+                });
                 api.masteries = masteries;
             });
         }

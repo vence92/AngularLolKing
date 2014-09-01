@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var myapp = angular
+angular
     .module('lolApp', [
         'ngCookies',
         'ngResource',
