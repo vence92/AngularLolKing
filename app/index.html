@@ -39,8 +39,6 @@
                     <li>
                         <a ui-sref="champions">
                             Champions
-                            true: <span ng-show="true">I should sho w.</span><br />
-                            false: <span ng-show="false">I should not show.</span>
                         </a>
                     </li>
                 </ul>
@@ -84,6 +82,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -91,11 +90,13 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/highcharts.js"></script>
         <script src="scripts/services/SummonerService.js"></script>
         <script src="scripts/services/ChampionService.js"></script>
         <script src="scripts/services/StaticDataService.js"></script>

@@ -1,33 +1,34 @@
-<div class="l-padding-10 bg-block-dark">
-    <div class="profile__block">
-        <div class="profile__block__header">
-            Recent Statistics
+<div class="l-padding-10 bg-block-dark l-row">
+    <div class="l-col8">
+        <div class="profile__block">
+            <div class="profile__block__header">
+                Recent Statistics
+            </div>
+            <div class="profile__block__content">
+                <ul class="profile__recent__picture text-center">
+                    <li ng-repeat="stat in summoner.recentGames | limitTo: 6">
+                        <div class="profile__recent__img" style="background:url('//lkimg.zamimg.com/shared/riot/images/champions/{{stat.championId}}.png') no-repeat center center;">
+                        </div>
+                        <div class="profile__recent__infos">
+                            <div>
+                                {{stat.stats.championsKilled}} kills
+                            </div>
+                            <div>
+                                {{stat.stats.numDeaths}} deaths
+                            </div>
+                            <div>
+                                {{stat.stats.assists}} assists
+                            </div>
+                            <div ng-if="stat.stats.win" class="bg-confirm">
+                            </div>
+                            <div ng-if="!stat.stats.win" class="bg-error">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="profile__block__content">
-            <ul class="profile__recent__picture text-center">
-                <li ng-repeat="stat in summoner.recentGames | limitTo: 6" style="background:url('//lkimg.zamimg.com/shared/riot/images/champions/{{stat.championId}}.png') no-repeat center center;">
-                    <div>
-                        {{stat.stats.championsKilled}} kills
-                    </div>
-                    <div>
-                        {{stat.stats.numDeaths}} deaths
-                    </div>
-                    <div>
-                        {{stat.stats.assists}} assists
-                    </div>
-                    <div ng-if="stat.stats.win" class="text-confirm">
-                        WIN
-                    </div>
-                    <div ng-if="!stat.stats.win" class="text-error">
-                        LOSE
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="profile__block l-row l-margin-top-10">
-        <div class="l-col8">
+        <div class="profile__block">
             <div class="profile__block__header">
                 Personal Ratings
             </div>
@@ -45,43 +46,32 @@
                 </div>
             </div>  
         </div> 
-        <div class="l-col4">
-            <div class="profile__block__header">
-                Statistics
-            </div>
-            <div class="profile__block__content profile__block__content--stats">
-                <div ng-repeat="summary in summoner.summary" ng-if="summary.playerStatSummaryType == 'RankedSolo5x5' || summary.playerStatSummaryType == 'Unranked' || summary.playerStatSummaryType == 'Unranked3x3'">
-                    <div class="profile__block__header--stats">
-                        {{summary.playerStatSummaryType | formatGameType}}
+    </div>
+
+    <div class="profile__block l-col4 l-margin-top-10">
+        <div class="profile__block__header">
+            Statistics
+        </div>
+        <div class="profile__block__content profile__block__content--stats">
+            <div ng-repeat="summary in summoner.summary" ng-if="summary.playerStatSummaryType == 'RankedSolo5x5' || summary.playerStatSummaryType == 'Unranked' || summary.playerStatSummaryType == 'Unranked3x3'">
+                <div class="profile__block__header--stats">
+                    {{summary.playerStatSummaryType | formatGameType}}
+                </div>
+                <div class="profile__block__content--summary">
+                    <div>
+                        Wins : {{summary.wins}}
                     </div>
-                    <div class="profile__block__content--summary">
-                        <div>
-                            Wins : {{summary.wins}}
-                        </div>
-                        <div>
-                            Kills : {{summary.aggregatedStats.totalChampionKills}}
-                        </div>
-                        <div>
-                            Assists : {{summary.aggregatedStats.totalAssists}}
-                        </div>
+                    <div>
+                        Kills : {{summary.aggregatedStats.totalChampionKills}}
+                    </div>
+                    <div>
+                        Assists : {{summary.aggregatedStats.totalAssists}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-        <div>
-            <div class="block__header">
-                Most Champions Played
-            </div>
-            <div class="block__content">
-                <div ng-repeat="rankedstats in summoner.rankedStats | orderBy:'-stats.totalSessionsPlayed' | limitTo:5">
-                    {{rankedstats.name}}
-                    {{rankedstats.stats.totalSessionsPlayed}} Games played
-                    {{rankedstats.stats.totalSessionsWon}} Games won
-                    {{rankedstats.stats.totalSessionsLost}} Games lost
-                </div>
-            </div>
-        </div>
-    </div> 
+</div>
+<div class="l-row l-margin-top-10 l-padding-bg-block-dark ">
+    <highchart id="chart1" config="MostPlayedChamps"></highchart>
 </div>

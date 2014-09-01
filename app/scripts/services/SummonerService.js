@@ -66,12 +66,20 @@ angular.module('lolApp')
 
                 $http.get(ApiUrl + '/v1.3/stats/by-summoner/'+ api.summoner.id +'/ranked?' + ApiKey).success(function(data){
                     api.summoner.rankedStats = data.champions;
+                    var mostPlayedChamps = [];
+                    var sortableChamps = [];
                     angular.forEach(api.summoner.rankedStats, function(value, key){
                         if(value.id === 0) {
                             api.summoner.rankedStats.summary = api.summoner.rankedStats[key];
                             delete(api.summoner.rankedStats[key]);
                         }
+                        if(value.id !== 0) {
+                            sortableChamps.push([value.id, value.stats.totalSessionsPlayed, value.stats.totalSessionsWon, value.stats.totalSessionsLost]);
+                        }
                     });
+                    sortableChamps.sort(function(a, b) {return b[1] - a[1]});
+                    api.summoner.mostPlayedChamps = sortableChamps.slice(0,10);
+                    console.log(api.summoner.mostPlayedChamps);
                 });
 
                 $http.get(ApiUrl + '/v1.3/game/by-summoner/'+ api.summoner.id +'/recent?' + ApiKey).success(function(data){
@@ -121,6 +129,7 @@ angular.module('lolApp')
 
             return winRate;
         }
+
 
 
         var api = {

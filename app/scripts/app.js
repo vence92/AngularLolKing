@@ -8,13 +8,14 @@
  *
  * Main module of the application.
  */
-angular
+var myapp = angular
     .module('lolApp', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
         'ngTouch',
-        'ui.router'
+        'ui.router',
+        'highcharts-ng'
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
         //

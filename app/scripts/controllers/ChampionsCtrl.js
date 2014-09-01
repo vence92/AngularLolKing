@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the lolAppApp
  */
-angular.module('lolApp')
-  .controller('ChampionsCtrl', function ($scope, ChampionService) {
+
+myapp.controller('ChampionsCtrl', function ($scope, ChampionService) {
     
     ChampionService.getChampion().then(function(champions){
         $scope.champions = champions.data.data;
